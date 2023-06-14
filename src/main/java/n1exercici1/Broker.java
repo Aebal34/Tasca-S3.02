@@ -1,14 +1,16 @@
 package n1exercici1;
 import java.util.*;
 
-public class Broker implements IObservable{
+public class Broker implements IObservable, IObserver{
 
 	private List<IObserver> agencies;
 	private double stockExchangeValue;
+	private StockExchange stockExchange;
 	
 	public Broker() {
 		this.agencies = new ArrayList<IObserver>();
-		stockExchangeValue = StockExchange.getValue();
+		stockExchangeValue = 0;
+		stockExchange = StockExchange.getInstance();
 	}
 	
 	@Override
@@ -30,5 +32,10 @@ public class Broker implements IObservable{
 	
 	public double getStockExchangeValue() {
 		return stockExchangeValue;
+	}
+
+	@Override
+	public void update() {
+		stockExchangeValue = stockExchange.getValue();
 	}
 }

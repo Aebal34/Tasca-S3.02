@@ -9,20 +9,23 @@ public class App {
 		BrokerAgency strattonOakmont = new BrokerAgency(jordanBelfort);
 		BrokerAgency aerotyne = new BrokerAgency(jordanBelfort);
 		
+		//We also add the Observable to be an Observer of StockExchange
+		StockExchange stockExchange = StockExchange.getInstance();
+		stockExchange.add(jordanBelfort);
 		//Now we need to add those Observers to the Observable list
 		jordanBelfort.add(wallStreet);
 		jordanBelfort.add(strattonOakmont);
 		jordanBelfort.add(aerotyne);
-
+		
 		//Now, everytime StockExchange changes value, Jordan will notify all agencies
 		do {
-			System.out.println("The stock exchange is at "+StockExchange.getValue());
+			System.out.println("The stock exchange is at "+stockExchange.getValue());
 
-			
-			if(StockExchange.getValue() > jordanBelfort.getStockExchangeValue()) {
-				switch((int)Math.random()) {
+			if(stockExchange.getValue() == jordanBelfort.getStockExchangeValue()) {
+				switch((int)Math.round(Math.random())) {
 					case 0:
-						StockExchange.increaseValue();
+						stockExchange.increaseValue();
+						stockExchange.notifyObservers();
 						jordanBelfort.notifyObservers();
 						if(jordanBelfort.getStockExchangeValue() == wallStreet.getStockExchangeValue()
 								&& jordanBelfort.getStockExchangeValue()==aerotyne.getStockExchangeValue()
@@ -31,7 +34,8 @@ public class App {
 						}
 						break;
 					case 1:
-						StockExchange.decreaseValue();
+						stockExchange.decreaseValue();
+						stockExchange.notifyObservers();
 						jordanBelfort.notifyObservers();
 						if(jordanBelfort.getStockExchangeValue() == wallStreet.getStockExchangeValue()
 								&& jordanBelfort.getStockExchangeValue()==aerotyne.getStockExchangeValue()
@@ -43,7 +47,9 @@ public class App {
 						System.out.println("Something went wrong");
 				}
 			}
-		}while(StockExchange.getValue() <= 0);
+		}while(stockExchange.getValue() >= 0);
+		
+		System.out.println("The stock exchange is at "+stockExchange.getValue());
 		
 		System.out.println("Stock exchange has gone under 0");
 	}

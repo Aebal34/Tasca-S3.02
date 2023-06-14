@@ -7,7 +7,7 @@ public class BrokerAgency implements IObserver{
 	
 	public BrokerAgency(Broker broker) {
 		this.broker = broker;
-		stockExchangeValue = StockExchange.getValue();
+		stockExchangeValue = 0;
 	}
 
 	@Override
