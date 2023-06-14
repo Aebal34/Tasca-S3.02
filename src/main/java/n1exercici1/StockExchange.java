@@ -21,9 +21,9 @@ public class StockExchange {
 	}
 	
 	public static void increaseValue() {
-		value += Math.random()*10+1;
+		value += Math.random()*5;
 	}
 	public static void decreaseValue() {
-		value -= Math.random()*10+1;
+		value -= Math.random()*5;
 	}
 }

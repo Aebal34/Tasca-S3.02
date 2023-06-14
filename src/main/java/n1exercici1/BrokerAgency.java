@@ -15,5 +15,7 @@ public class BrokerAgency implements IObserver{
 		stockExchangeValue = broker.getStockExchangeValue(); 		
 	}
 	
-	
+	public double getStockExchangeValue() {
+		return stockExchangeValue;
+	}
 }

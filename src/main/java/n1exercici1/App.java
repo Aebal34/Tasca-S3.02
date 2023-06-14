@@ -14,6 +14,38 @@ public class App {
 		jordanBelfort.add(strattonOakmont);
 		jordanBelfort.add(aerotyne);
 
+		//Now, everytime StockExchange changes value, Jordan will notify all agencies
+		do {
+			System.out.println("The stock exchange is at "+StockExchange.getValue());
+
+			
+			if(StockExchange.getValue() > jordanBelfort.getStockExchangeValue()) {
+				switch((int)Math.random()) {
+					case 0:
+						StockExchange.increaseValue();
+						jordanBelfort.notifyObservers();
+						if(jordanBelfort.getStockExchangeValue() == wallStreet.getStockExchangeValue()
+								&& jordanBelfort.getStockExchangeValue()==aerotyne.getStockExchangeValue()
+								&& jordanBelfort.getStockExchangeValue()==strattonOakmont.getStockExchangeValue()) {
+							System.out.println("Agencies have been notified of the increase on the value.");
+						}
+						break;
+					case 1:
+						StockExchange.decreaseValue();
+						jordanBelfort.notifyObservers();
+						if(jordanBelfort.getStockExchangeValue() == wallStreet.getStockExchangeValue()
+								&& jordanBelfort.getStockExchangeValue()==aerotyne.getStockExchangeValue()
+								&& jordanBelfort.getStockExchangeValue()==strattonOakmont.getStockExchangeValue()) {
+							System.out.println("Agencies have been notified of the decrease on the value.");
+						}
+						break;
+					default:
+						System.out.println("Something went wrong");
+				}
+			}
+		}while(StockExchange.getValue() <= 0);
+		
+		System.out.println("Stock exchange has gone under 0");
 	}
 
 }
