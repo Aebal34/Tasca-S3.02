@@ -6,7 +6,7 @@ public class UsdEuroConverter implements Converter{
 	public double convert(double price) {
 		//---get currency price from database
 		
-		double actualUsdPrice = 1.09;
+		double actualUsdPrice = 0.91;
 		
 		return price * actualUsdPrice;
 	}
