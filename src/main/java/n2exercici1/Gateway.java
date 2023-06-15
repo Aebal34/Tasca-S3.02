@@ -4,15 +4,15 @@ public class Gateway {
 
 	public boolean makePayment(Payment paymentMethod) {
 		
-		//Implement payment procedures depending on paymentMethod
+		//---Implement payment procedures depending on paymentMethod---
 		
 		//Simulate payment "waiting time"
-		//try {
+		try {
 			System.out.println("Processing payment...");
-			//Thread.sleep(3000);
-		//}catch(InterruptedException e) {
-			//e.getMessage();
-		//}
+			Thread.sleep(1000); //1 second
+		}catch(InterruptedException e) {
+			e.getMessage();
+		}
 		
 		//Payment success is random
 		int paymentSuccess = (int)(Math.random()*9+1);
@@ -24,7 +24,8 @@ public class Gateway {
 		//We build a thread to be able to run the operation while we do others
 		Thread paymentThread = new Thread(() -> {
 			
-			//Any payment processing to be made
+			//---Any payment processing to be made---
+			System.out.println("Paying...");
 			
 			//We invoke the callback to notify the result of the operation
 			paymentCallback.onTrigger(makePayment(paymentMethod));

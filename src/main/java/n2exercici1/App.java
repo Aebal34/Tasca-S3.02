@@ -10,7 +10,5 @@ public class App {
 		System.out.println("Doing other things...");
 		querol.purchaseShoes(new PaypalPayment());
 		System.out.println("Doing other things...");
-
-		
 	}
 }
